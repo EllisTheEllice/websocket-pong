@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package me.engbers.www.pong.connection;
+package de.pong.websocket.connection;
 
 import java.io.IOException;
 import java.util.Collections;

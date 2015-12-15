@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package me.engbers.www.pong.logic;
+package de.pong.websocket.logic;
 
-import me.engbers.www.pong.logic.Player;
-import me.engbers.www.pong.logic.Ball;
 import java.util.Random;
 
 /**

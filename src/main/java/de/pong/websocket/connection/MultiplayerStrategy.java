@@ -1,9 +1,9 @@
-package me.engbers.www.pong.connection;
+package de.pong.websocket.connection;
 
-import me.engbers.www.pong.logic.Particle;
-import me.engbers.www.pong.logic.Player;
-import me.engbers.www.pong.logic.Ball;
 import com.google.gson.Gson;
+import de.pong.websocket.logic.Ball;
+import de.pong.websocket.logic.Particle;
+import de.pong.websocket.logic.Player;
 
 /**
  *
