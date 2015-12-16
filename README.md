@@ -18,8 +18,6 @@ websocket-pong uses a number of open source projects to work properly:
 
 ### Installation
 
-You need Gulp installed globally:
-
 ```sh
 $ todo
 ```
