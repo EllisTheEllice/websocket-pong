@@ -15,8 +15,6 @@ websocket-pong uses a number of open source projects to work properly:
 * [Java] - the rock-solid programming language
 * [Glassfish] - great UI boilerplate for modern web apps
 
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
 
 ### Installation
 
