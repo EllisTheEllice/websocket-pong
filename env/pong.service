@@ -1,0 +1,10 @@
+[Unit]
+Description=Start pong on NodeJS
+
+[Service]
+Type=simple
+User=simon
+ExecStart=/usr/bin/nodejs /var/www/simon/pong/trunk/public_html/server.js
+
+[Install]
+WantedBy=multi-user.target
