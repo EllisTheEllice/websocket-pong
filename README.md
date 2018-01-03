@@ -66,5 +66,6 @@ GNU/GPL
 
    [jQuery]: <http://jquery.com>
    [WebSockets]: <https://en.wikipedia.org/wiki/WebSocket>
-   [Java]: <https://www.java.com/en/>
-   [Glassfish]: <https://glassfish.java.net/>
+   [NodeJS]: <https://nodejs.org/en/>
+   [express framework]: <http://expressjs.com/>
+   [Twitter bootstrap]: <https://getbootstrap.com/>
