@@ -7,6 +7,13 @@ This game also has a lobby where players can find and challenge eachother.
 ### Version
 0.0.1
 
+
+
+![alt text](https://github.com/simibimi/websocket-pong/blob/master/documentation/images/screenshot.PNG "Screenshot")
+
+
+
+
 ### Used Tech
 
 websocket-pong uses a number of open source projects to work properly:
