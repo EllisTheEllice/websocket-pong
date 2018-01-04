@@ -9,7 +9,7 @@ This game also has a lobby where players can find and challenge eachother.
 
 
 
-![alt text](https://github.com/simibimi/websocket-pong/blob/master/documentation/images/screenshot.PNG "Screenshot")
+![alt text](https://github.com/simibimi/websocket-pong/blob/master/documentation/images/screen-capture.gif "Screenshot")
 
 
 
