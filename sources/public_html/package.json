@@ -1,5 +1,5 @@
 {
-    "name": "Node JS Pong",
+    "name": "nodejs-pong",
     "description": "Ein einfaches Pong-Spiel mit Node.js",
     "author": "Simon Engbers",
     "dependencies": {

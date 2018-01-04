@@ -1,0 +1,11 @@
+FROM node:9.3.0
+
+# Create app directory
+WORKDIR /usr/src/app
+
+COPY ../sources/ ./
+
+RUN npm install
+
+EXPOSE 8080
+CMD [ "nodejs", "/usr/src/app/server.js" ]

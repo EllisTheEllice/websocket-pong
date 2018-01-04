@@ -16,43 +16,35 @@ websocket-pong uses a number of open source projects to work properly:
 * [NodeJS] - the lightning-fast server-side JavaScript framework
 * [express framework] - A framework based on NodeJS which adds numerous features
 * [Twitter bootstrap] - A HTML/CSS framework to support responsive web applications
+* [Docker] - Cool container stuff
 
 
 ### Installation
 
-1. Install dependencies
-  - Go to the pong sources path
-  - use npm install to install configured dependencies
-  - use node server.js to make a test run
+1. Install docker
 
 ```sh
-$ cd <source-path>/public_html
-$ npm install
-$ nodejs server.js
+$ sudo yum update -y
+$ sudo yum install -y docker
+$ sudo service docker start
+$ sudo usermod -a -G docker <username>
+# from now on, docker should be runnable as non-root user
+$ docker info
 ```
 
-2. Create the service
-  - place the pong.service file under /etc/systemd/system and adapt the paths if necessary
-  - use systemctl enable pong.service to enable the service
-  - use systemctl start pong to start pong
+2. Clone this repository and build docker image
 
 ```sh
-$ vi /etc/systemd/system
-$ systemctl enable pong.service
-$ systemctl start pong
+$ git clone https://github.com/simibimi/websocket-pong
+$ cd docker
+$ docker build -t pong .
+$ docker run -p 80:8080 -d pong
+
+#verify everything is fine
+$ docker ps
+$ curl http://localhost
 ```
 
-
-### Known issues
-
- - No good-looking Web UI
- - Game continues after one player left the game
- - No sound
-
- ### Ideas
-
- - Create a docker container for easy usage with docker
- - Extend the UI of the Lobby
 
 License
 ----
@@ -69,3 +61,4 @@ GNU/GPL
    [NodeJS]: <https://nodejs.org/en/>
    [express framework]: <http://expressjs.com/>
    [Twitter bootstrap]: <https://getbootstrap.com/>
+   [Docker]: <https://www.docker.com/>
