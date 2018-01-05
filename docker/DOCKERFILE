@@ -3,7 +3,7 @@ FROM node:9.3.0
 # Create app directory
 WORKDIR /usr/src/app
 
-COPY ../sources/ ./
+COPY ../sources/public_html/ ./
 
 RUN npm install
 
