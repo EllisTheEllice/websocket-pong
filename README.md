@@ -43,14 +43,30 @@ $ docker info
 
 ```sh
 $ git clone https://github.com/simibimi/websocket-pong
-$ cd docker
-$ docker build -t pong .
-$ docker run -p 80:8080 -d pong
+$ cd websocket-pong
+$ docker build -f docker/web/Dockerfile -t pong .
+$ docker run --link pong-database  -p 80:8080 -d pong
+
+#
+through the link we have access to the env variables. Structured as follows:
+PONG_DATABASE_PORT_3306_TCP_ADDR=172.17.0.2
+PONG_DATABASE_ENV_MYSQL_DATABASE=pong
+PONG_DATABASE_ENV_MYSQL_USER=ponguser
+PONG_DATABASE_ENV_MYSQL_PASSWORD=pongpass
+PONG_DATABASE_PORT_3306_TCP_PORT=3306
+
+
 
 #verify everything is fine
 $ docker ps
 $ curl http://localhost
+
+#now the database
+cd docker/database
+docker build -t mysql-5.5 .
+docker run -d --name pong-database -v $PWD/data:/docker-entrypoint-initdb.d mysql-5.5
 ```
+
 
 
 License
