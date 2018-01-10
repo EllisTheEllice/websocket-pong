@@ -4,7 +4,7 @@ This is a small Pong game based on JavaScript (server-side and client-side) with
 It is possible to play this game against AI or against an opponent via network.
 This game also has a lobby where players can find and challenge eachother.
 
-## Version
+### Version
 0.0.1
 
 
@@ -14,7 +14,7 @@ This game also has a lobby where players can find and challenge eachother.
 
 
 
-## Used Tech
+### Used Tech
 
 websocket-pong uses a number of open source projects to work properly:
 
@@ -26,14 +26,8 @@ websocket-pong uses a number of open source projects to work properly:
 * [Docker] - Cool container stuff
 
 
-## Installation
+### Installation
 
-
-### Installation using docker-compose
-
-
-### Installation using vanilla docker
- 
 1. Install docker
 
 ```sh
@@ -51,15 +45,21 @@ $ docker info
 ```sh
 $ git clone https://github.com/simibimi/websocket-pong
 $ cd websocket-pong
+# create a docker network
+$ docker network create pongnet
 # at first, the db
 $ cd docker/database
-$ docker build -t mysql-5.5 .
-$ docker run -d --name pong-database -v $PWD/data:/docker-entrypoint-initdb.d mysql-5.5
+$ docker build -t pong-db-image .
+$ docker run -d --name pong-database --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d pong-db-image
 
 # now the nodejs server
 $ cd ../../
-$ docker build -f docker/web/Dockerfile -t pong .
-$ docker run --link pong-database  -p 80:8080 -d pong
+$ docker build -f docker/web/Dockerfile -t pong-web-image .
+#$ docker run --link pong-database  -p 80:8080 -d pong-web-image
+$ docker run -p 80:8080 -d --name pong-web --network pongnet pong-web-image
+# due to the network, we can connect to the DB using a DNS name
+$ docker exec -it pong mysql --host=pong-database --user=myuser --password
+
 # through the link we have access to the env variables. Structured as follows:
 #PONG_DATABASE_PORT_3306_TCP_ADDR=172.17.0.2
 #PONG_DATABASE_ENV_MYSQL_DATABASE=pong
@@ -72,6 +72,14 @@ $ docker run --link pong-database  -p 80:8080 -d pong
 #verify everything is fine
 $ docker ps
 $ curl http://localhost
+
+#now the database
+cd docker/database
+docker build -t mysql-5.5 .
+docker run -d --name pong-database -v $PWD/data:/docker-entrypoint-initdb.d mysql-5.5
+# consider addind the following parameters
+--character-set-server=utf8
+--collation-server=utf8_general_ci
 ```
 
 
