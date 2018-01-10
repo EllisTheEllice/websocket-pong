@@ -28,7 +28,7 @@ websocket-pong uses a number of open source projects to work properly:
 
 ### Installation
 
-1. Install docker
+1. *Install docker*
 
 ```sh
 $ sudo yum update -y
@@ -40,7 +40,7 @@ $ docker info
 # Note: If you experience problems using docker command as a non-privileged user, try to log out and login again
 ```
 
-2. Clone this repository and build docker image
+2. *Clone this repository and fulfill prerequisites*
 
 ```sh
 $ git clone https://github.com/simibimi/websocket-pong
@@ -50,7 +50,7 @@ $ mkdir /tmp/persdata #create persistent volume
 $ docker network create pongnet
 ```
 
-*The database*
+3. *The database*
 
 ```sh
 $ cd docker/database
@@ -58,7 +58,7 @@ $ docker build -t pong-db-image .
 $ docker run -d --name pong-database --character-set-server=utf8 --collation-server=utf8_general_ci --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d -v /tmp/persdata:/var/lib/mysql pong-db-image
 ```
 
-*The NodeJS server*
+4. *The NodeJS server*
 
 ```sh
 $ cd ../../
@@ -77,7 +77,7 @@ $ docker run -p 80:8081 -d --name pong-web --network pongnet pong-web-image
 #PONG_DATABASE_PORT_3306_TCP_PORT=3306
 ```
 
-*Verify the installation*
+5. *Verify the installation*
 
 ````sh
 # verify everything works as expected
@@ -85,7 +85,7 @@ $ docker ps
 $ curl http://localhost
 ```
 
-## Backing up highscore
+## Backing up your highscore
 
 If you want to persist the highscore, you can simply create a backup of the /tmp/persdata folder. Another way would be to use mysql dump
 
