@@ -45,21 +45,21 @@ $ docker info
 ```sh
 $ git clone https://github.com/simibimi/websocket-pong
 $ cd websocket-pong
-$ mkdir persdata #create persistent volume
+$ mkdir /tmp/persdata #create persistent volume
 # create a docker network
 $ docker network create pongnet
 # at first, the db
 $ cd docker/database
 $ docker build -t pong-db-image .
-$ docker run -d --name pong-database --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d -v $PWD/../../persdata:/var/lib/mysql pong-db-image
+$ docker run -d --name pong-database --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d -v /tmp/persdata:/var/lib/mysql pong-db-image
 
 # now the nodejs server
 $ cd ../../
 $ docker build -f docker/web/Dockerfile -t pong-web-image .
-#$ docker run --link pong-database  -p 80:8080 -d pong-web-image
-$ docker run -p 80:8080 -d --name pong-web --network pongnet pong-web-image
+#$ docker run --link pong-database  -p 80:8081 -d pong-web-image
+$ docker run -p 80:8081 -d --name pong-web --network pongnet pong-web-image
 # due to the network, we can connect to the DB using a DNS name
-$ docker exec -it pong mysql --host=pong-database --user=myuser --password
+#$ docker exec -it pong-web mysql --host=pong-database --user=myuser --password
 
 # through the link we have access to the env variables. Structured as follows:
 #PONG_DATABASE_PORT_3306_TCP_ADDR=172.17.0.2
@@ -83,7 +83,9 @@ docker run -d --name pong-database -v $PWD/data:/docker-entrypoint-initdb.d mysq
 --collation-server=utf8_general_ci
 ```
 
+## Backing up highscore
 
+If you want to persist the highscore, you can simply create a backup of the /tmp/persdata folder. Another way would be to use mysql dump
 
 License
 ----
