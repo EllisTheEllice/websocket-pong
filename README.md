@@ -51,7 +51,7 @@ $ docker network create pongnet
 # at first, the db
 $ cd docker/database
 $ docker build -t pong-db-image .
-$ docker run -d --name pong-database --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d -v /tmp/persdata:/var/lib/mysql pong-db-image
+$ docker run -d --name pong-database --character-set-server=utf8 --collation-server=utf8_general_ci --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d -v /tmp/persdata:/var/lib/mysql pong-db-image
 
 # now the nodejs server
 $ cd ../../
@@ -69,18 +69,10 @@ $ docker run -p 80:8081 -d --name pong-web --network pongnet pong-web-image
 #PONG_DATABASE_PORT_3306_TCP_PORT=3306
 
 
-
-#verify everything is fine
+# verify everything works as expected
 $ docker ps
 $ curl http://localhost
 
-#now the database
-cd docker/database
-docker build -t mysql-5.5 .
-docker run -d --name pong-database -v $PWD/data:/docker-entrypoint-initdb.d mysql-5.5
-# consider addind the following parameters
---character-set-server=utf8
---collation-server=utf8_general_ci
 ```
 
 ## Backing up highscore
