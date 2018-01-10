@@ -45,12 +45,13 @@ $ docker info
 ```sh
 $ git clone https://github.com/simibimi/websocket-pong
 $ cd websocket-pong
+$ mkdir persdata #create persistent volume
 # create a docker network
 $ docker network create pongnet
 # at first, the db
 $ cd docker/database
 $ docker build -t pong-db-image .
-$ docker run -d --name pong-database --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d pong-db-image
+$ docker run -d --name pong-database --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d -v $PWD/../../persdata:/var/lib/mysql pong-db-image
 
 # now the nodejs server
 $ cd ../../
