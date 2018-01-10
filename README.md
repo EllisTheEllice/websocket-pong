@@ -79,7 +79,7 @@ $ docker run -p 80:8081 -d --name pong-web --network pongnet pong-web-image
 
 5. *Verify the installation*
 
-````sh
+```sh
 # verify everything works as expected
 $ docker ps
 $ curl http://localhost
