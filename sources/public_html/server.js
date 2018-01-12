@@ -320,4 +320,4 @@ function getFormattedDate() {
     return d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
 }
 
-console.log('Der Server läuft nun unter http://127.0.0.1:' + conf.port + '/');
+console.log('Server runs on http://127.0.0.1:' + conf.port + '/ now');

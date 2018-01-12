@@ -55,7 +55,7 @@ $ docker network create pongnet
 ```sh
 $ cd docker/database
 $ docker build -t pong-db-image .
-$ docker run -d --name pong-database --character-set-server=utf8 --collation-server=utf8_general_ci --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d -v /tmp/persdata:/var/lib/mysql pong-db-image
+$ docker run -d --name pong-database --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d -v /tmp/persdata:/var/lib/mysql pong-db-image --character-set-server=utf8 --collation-server=utf8_general_ci
 ```
 
 4. *The NodeJS server*
