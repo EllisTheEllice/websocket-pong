@@ -26,7 +26,7 @@ websocket-pong uses a number of open source projects to work properly:
 * [Docker] - Cool container stuff
 
 
-### Installation
+### Installation using vanilla docker
 
 1. *Install docker*
 
@@ -84,6 +84,14 @@ $ docker run -p 80:8081 -d --name pong-web --network pongnet pong-web-image
 $ docker ps
 $ curl http://localhost
 ```
+
+
+### Installation using docker-compose
+
+### Installation using AWS EKS
+
+### Installation using RedHat OpenShift
+
 
 ## Backing up your highscore
 
