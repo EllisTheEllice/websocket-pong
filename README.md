@@ -88,10 +88,15 @@ $ curl http://localhost
 
 ### Installation using docker-compose
 
+//Todo
+
 ### Installation using AWS EKS
+
+//Todo
 
 ### Installation using RedHat OpenShift
 
+//Todo
 
 ## Backing up your highscore
 
