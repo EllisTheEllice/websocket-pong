@@ -14,10 +14,11 @@ This game also has a lobby where players can find and challenge eachother.
 
 # Table of contents
 
-1. [Used Tech](#Used Tech)
+1. [Used Tech](#techno)
+2. [Installation using vanilla docker](#vanilla)
 
 
-## Used Tech
+## Used Tech<a name="techno"></a>
 
 websocket-pong uses a number of open source projects to work properly:
 
@@ -30,7 +31,7 @@ websocket-pong uses a number of open source projects to work properly:
 
 ## Installation
 
-### Installation using vanilla docker
+### Installation using vanilla docker<a name="vanilla"></a>
 
 1. *Install docker*
 
