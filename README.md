@@ -14,7 +14,7 @@ This game also has a lobby where players can find and challenge eachother.
 
 # Table of contents
 
-1. [Used Tech](#Used Tech)
+1. [Used Tech]
 
 
 ## Used Tech
