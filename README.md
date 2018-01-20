@@ -69,7 +69,7 @@ $ docker run -d --name pong-database --network pongnet -v $PWD/data:/docker-entr
 4. *The NodeJS server*
 
 ```sh
-$ docker pull sengbatz/websocket-pong-wen
+$ docker pull sengbatz/websocket-pong-web
 $ docker run -p 80:8081 -d --name pong-web --network pongnet sengbatz/websocket-pong-web
 # due to the network, we can connect to the DB using a DNS name
 #$ docker exec -it pong-web mysql --host=pong-database --user=myuser --password

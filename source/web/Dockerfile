@@ -7,7 +7,7 @@ COPY sources/public_html/ ./
 
 RUN npm install
 
-HEALTHCHECK --interval=5s --timeout=3s CMD curl --fail http://localhost:8080 || exit 1
+HEALTHCHECK --interval=5s --timeout=3s CMD curl --fail http://localhost:8081 || exit 1
 
-EXPOSE 8080
+EXPOSE 8081
 CMD [ "nodejs", "/usr/src/app/server.js" ]
