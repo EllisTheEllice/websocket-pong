@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pong-web
+  labels:
+    zone: dev
+    version: v1
+spec:
+  containers:
+    - name: pong-web-ctr
+      image: sengbatz/websocket-pong
+      ports:
+        - containerPort: 8081

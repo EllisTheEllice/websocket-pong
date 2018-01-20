@@ -53,7 +53,7 @@ $ docker network create pongnet
 3. *The database*
 
 ```sh
-$ cd docker/database
+$ cd deployment/docker/database
 $ docker build -t pong-db-image .
 $ docker run -d --name pong-database --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d -v /tmp/persdata:/var/lib/mysql pong-db-image --character-set-server=utf8 --collation-server=utf8_general_ci
 ```
@@ -61,8 +61,8 @@ $ docker run -d --name pong-database --network pongnet -v $PWD/data:/docker-entr
 4. *The NodeJS server*
 
 ```sh
-$ cd ../../
-$ docker build -f docker/web/Dockerfile -t pong-web-image .
+$ cd ../../../
+$ docker build -f deployment/docker/web/Dockerfile -t pong-web-image .
 #$ docker run --link pong-database  -p 80:8081 -d pong-web-image
 $ docker run -p 80:8081 -d --name pong-web --network pongnet pong-web-image
 # due to the network, we can connect to the DB using a DNS name
@@ -89,6 +89,11 @@ $ curl http://localhost
 ### Installation using docker-compose
 
 //Todo
+
+
+### Installation on Kubernetes
+
+
 
 ### Installation using AWS EKS
 
