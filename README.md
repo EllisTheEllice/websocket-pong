@@ -17,8 +17,12 @@ This game also has a lobby where players can find and challenge eachother.
 
 1. [Used Tech](#techno)
 2. [Installation using vanilla docker](#vanilla)
-
-
+3. [Installation using Docker compose](#compose)
+4. [Installation using Kubernetes](#kubernetes)
+5. [Installation using AWS EKS](#eks)
+6. [Installation using RedHat OpenShift](#openshift)
+7. [Building images locally](#localbuild)
+8. [Backing up your highscore](#highscore)
 
 ## Used Tech<a name="techno"></a>
 
@@ -80,25 +84,25 @@ $ curl http://localhost
 ```
 
 
-### Installation using docker-compose
+### Installation using docker-compose<a name="compose"></a>
 
 //Todo
 
 
-### Installation on Kubernetes
+### Installation on Kubernetes<a name="kubernetes"></a>
 
 
 
-### Installation using AWS EKS
-
-//Todo
-
-### Installation using RedHat OpenShift
+### Installation using AWS EKS<a name="eks"></a>
 
 //Todo
 
+### Installation using RedHat OpenShift<a name="openshift"></a>
 
-## Building the images locally
+//Todo
+
+
+## Building the images locally<a name="localbuild"></a>
 
 ```sh
 $ git clone https://github.com/simibimi/websocket-pong
@@ -118,7 +122,7 @@ $ docker run -p 80:8081 -d --name pong-web --network pongnet pong-web-image
 ```
 
 
-## Backing up your highscore
+## Backing up your highscore<a name="highscore"></a>
 
 If you want to persist the highscore, you can simply create a backup of the /tmp/persdata folder. Another way would be to use mysql dump
 
