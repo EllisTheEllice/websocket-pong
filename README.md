@@ -4,8 +4,8 @@ This is a small Pong game based on JavaScript (server-side and client-side) with
 It is possible to play this game against AI or against an opponent via network.
 This game also has a lobby where players can find and challenge eachother.
 
-### Version
-0.0.1
+## Version
+0.1
 
 
 
@@ -14,7 +14,7 @@ This game also has a lobby where players can find and challenge eachother.
 
 
 
-### Used Tech
+## Used Tech
 
 websocket-pong uses a number of open source projects to work properly:
 
@@ -25,6 +25,7 @@ websocket-pong uses a number of open source projects to work properly:
 * [Twitter bootstrap] - A HTML/CSS framework to support responsive web applications
 * [Docker] - Cool container stuff
 
+## Installation
 
 ### Installation using vanilla docker
 
@@ -40,11 +41,9 @@ $ docker info
 # Note: If you experience problems using docker command as a non-privileged user, try to log out and login again
 ```
 
-2. *Clone this repository and fulfill prerequisites*
+2. *Fulfill prerequisites*
 
 ```sh
-$ git clone https://github.com/simibimi/websocket-pong
-$ cd websocket-pong
 $ mkdir /tmp/persdata #create persistent volume
 # create a docker network
 $ docker network create pongnet
@@ -53,28 +52,17 @@ $ docker network create pongnet
 3. *The database*
 
 ```sh
-$ cd deployment/docker/database
-$ docker build -t pong-db-image .
-$ docker run -d --name pong-database --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d -v /tmp/persdata:/var/lib/mysql pong-db-image --character-set-server=utf8 --collation-server=utf8_general_ci
+$ docker pull sengbatz/websocket-pong-db
+$ docker run -d --name pong-database --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d -v /tmp/persdata:/var/lib/mysql sengbatz/websocket-pong-db --character-set-server=utf8 --collation-server=utf8_general_ci
 ```
 
 4. *The NodeJS server*
 
 ```sh
-$ cd ../../../
-$ docker build -f deployment/docker/web/Dockerfile -t pong-web-image .
-#$ docker run --link pong-database  -p 80:8081 -d pong-web-image
-$ docker run -p 80:8081 -d --name pong-web --network pongnet pong-web-image
+$ docker pull sengbatz/websocket-pong-wen
+$ docker run -p 80:8081 -d --name pong-web --network pongnet sengbatz/websocket-pong-web
 # due to the network, we can connect to the DB using a DNS name
 #$ docker exec -it pong-web mysql --host=pong-database --user=myuser --password
-
-
-# through the link we have access to the env variables. Structured as follows:
-#PONG_DATABASE_PORT_3306_TCP_ADDR=172.17.0.2
-#PONG_DATABASE_ENV_MYSQL_DATABASE=pong
-#PONG_DATABASE_ENV_MYSQL_USER=ponguser
-#PONG_DATABASE_ENV_MYSQL_PASSWORD=pongpass
-#PONG_DATABASE_PORT_3306_TCP_PORT=3306
 ```
 
 5. *Verify the installation*
@@ -102,6 +90,27 @@ $ curl http://localhost
 ### Installation using RedHat OpenShift
 
 //Todo
+
+
+## Building the images locally
+
+```sh
+$ git clone https://github.com/simibimi/websocket-pong
+$ cd websocket-pong
+$ docker network create pongnet
+
+#DB
+$ cd source/database
+$ mkdir /tmp/persdata
+$ docker build -t pong-db-image .
+$ docker run -d --name pong-database --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d -v /tmp/persdata:/var/lib/mysql pong-db-image --character-set-server=utf8 --collation-server=utf8_general_ci
+
+#Web
+$ cd ../web
+$ docker build -t pong-web-image .
+$ docker run -p 80:8081 -d --name pong-web --network pongnet pong-web-image
+```
+
 
 ## Backing up your highscore
 
