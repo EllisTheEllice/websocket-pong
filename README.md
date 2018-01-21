@@ -124,7 +124,18 @@ $ docker run -p 80:8081 -d --name pong-web --network pongnet pong-web-image
 
 ## Backing up your highscore<a name="highscore"></a>
 
-If you want to persist the highscore, you can simply create a backup of the /tmp/persdata folder. Another way would be to use mysql dump
+If you want to persist the highscore, you can simply create a backup of the /tmp/persdata folder. Another way would be to use mysqldump.
+
+### Backup using mysqldump
+
+Create a crontask that runs once a day to create a dump.
+*Note:* This is a very simple example. Feel free to adapt this approach to your needs.
+
+```sh
+$ crontab -e
+# add the following line to your crontab, then save and exit
+@daily $(which docker) exec pong-database mysqldump --user="ponguser" --password="pongpass" pong > /tmp/pong_$(date +%Y-%m-%d).sql
+```
 
 License
 ----
