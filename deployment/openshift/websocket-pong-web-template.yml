@@ -1,0 +1,147 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: ${APPLICATION_NAME}-template
+  labels:
+     name: ${APPLICATION_NAME}
+parameters:
+  - name: API_VERSION
+    value: "v1"
+  - name: APPLICATION_NAME
+    description: "The name of the application to deploy"
+    value: "websocket-pong-web"
+  - name: CLUSTER_IP
+    value: "172.30.177.29"
+  - name: NAMESPACE
+    value: "default"
+  - name: "PORT"
+    value: "8081"
+  - name: "HOST"
+    value: "www.foo.bar"
+  - name: "GROUP"
+    value: "websocket-pong"
+objects:
+  - apiVersion: ${API_VERSION}
+    kind: Service
+    metadata:
+      labels:
+        app: ${GROUP}
+      name: ${APPLICATION_NAME}
+      namespace: ${NAMESPACE}
+      selfLink: /api/${API_VERSION}/namespaces/${NAMESPACE}/services/${APPLICATION_NAME}
+    spec:
+      clusterIP: ${CLUSTER_IP}
+      ports:
+        - name: ${PORT}-tcp
+          port: ${PORT}
+          protocol: TCP
+          targetPort: 8081
+      selector:
+        deploymentconfig: ${APPLICATION_NAME}
+      sessionAffinity: None
+      type: ClusterIP  
+  - apiVersion: apps.openshift.io/${API_VERSION}
+    kind: DeploymentConfig
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+      generation: 2
+      labels:
+        app: ${GROUP}
+      name: ${APPLICATION_NAME}
+      namespace: ${NAMESPACE}
+      selfLink: >-
+        /apis/apps.openshift.io/${API_VERSION}/namespaces/${NAMESPACE}/deploymentconfigs/${APPLICATION_NAME}
+    spec:
+      replicas: 2
+      selector:
+        app: ${GROUP}
+        deploymentconfig: ${APPLICATION_NAME}
+      strategy:
+        activeDeadlineSeconds: 21600
+        resources: {}
+        rollingParams:
+          intervalSeconds: 1
+          maxSurge: 25%
+          maxUnavailable: 25%
+          timeoutSeconds: 600
+          updatePeriodSeconds: 1
+        type: Rolling
+      template:
+        metadata:
+          annotations:
+            openshift.io/generated-by: OpenShiftWebConsole
+          creationTimestamp: null
+          labels:
+            app: ${GROUP}
+            deploymentconfig: ${APPLICATION_NAME}
+        spec:
+          containers:
+            - image: >-
+                sengbatz/${APPLICATION_NAME}:latest
+              imagePullPolicy: Always
+              name: ${APPLICATION_NAME}
+              ports:
+                - containerPort: ${PORT}
+                  protocol: TCP
+              resources: {}
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+      test: false
+      triggers:
+        - type: ConfigChange
+        - imageChangeParams:
+            automatic: true
+            containerNames:
+              - ${APPLICATION_NAME}
+            from:
+              kind: ImageStreamTag
+              name: '${APPLICATION_NAME}:latest'
+              namespace: ${NAMESPACE}
+          type: ImageChange
+  - apiVersion: image.openshift.io/${API_VERSION}
+    kind: ImageStream
+    metadata:
+      generation: 2
+      labels:
+        app: ${GROUP}
+      name: ${APPLICATION_NAME}
+      namespace: ${NAMESPACE}
+      selfLink: /apis/image.openshift.io/${API_VERSION}/namespaces/${NAMESPACE}/imagestreams/${APPLICATION_NAME}
+    spec:
+      lookupPolicy:
+        local: false
+      tags:
+        - annotations:
+            openshift.io/generated-by: OpenShiftWebConsole
+            openshift.io/imported-from: sengbatz/${APPLICATION_NAME}
+          from:
+            kind: DockerImage
+            name: sengbatz/${APPLICATION_NAME}
+          generation: 2
+          importPolicy: {}
+          name: latest
+          referencePolicy:
+            type: Source
+    apiVersion: ${API_VERSION}
+    kind: Route
+    metadata:
+      annotations:
+        openshift.io/host.generated: 'true'
+      labels:
+        app: ${GROUP}
+      name: ${APPLICATION_NAME}
+      namespace: ${NAMESPACE}
+      selfLink: /oapi/${API_VERSION}/namespaces/${NAMESPACE}/routes/${APPLICATION_NAME}
+    spec:
+      host: ${HOST}
+      port:
+        targetPort: ${PORT}-tcp
+      to:
+        kind: Service
+        name: ${APPLICATION_NAME}
+        weight: 100
+      wildcardPolicy: None
