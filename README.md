@@ -86,7 +86,29 @@ $ curl http://localhost
 
 ### Installation using docker-compose<a name="compose"></a>
 
-//Todo
+1. *Install docker-compose*
+
+```sh
+sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+```
+
+2. *Fulfill prerequisites*
+
+```sh
+$ mkdir /tmp/persdata #create persistent volume
+# create a docker network
+$ docker network create pongnet
+```
+
+3. *Start*
+
+```sh
+$ cd deployment/docker-compose
+$ docker compose pull
+$ docker compose up -d
+```
 
 
 ### Installation on Kubernetes<a name="kubernetes"></a>
