@@ -1,0 +1,10 @@
+version: '0.1'
+services:
+  web:
+    image: "sengbatz/websocket-pong-web"
+    ports:
+     - "8081:8081"
+  db:
+    image: "sengbatz/websocket-pong-db"
+    volumes:
+      - /tmp/persdata:/var/lib/mysql

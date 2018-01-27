@@ -11,10 +11,8 @@ var Logic = require('./gamelogic/Logic');
 
 server.listen(conf.port);
 
-app.configure(function () {
-    // statische Dateien ausliefern
-    app.use(express.static(__dirname + '/public'));
-});
+// statische Dateien ausliefern
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
     // so wird die Datei index.html ausgegeben
