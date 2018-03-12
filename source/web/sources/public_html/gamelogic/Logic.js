@@ -16,6 +16,7 @@ function Logic(isSingleplayer) {
     this.isSingleplayer = isSingleplayer;
     this.isPause = false;
     this.maxScore = 16;
+    this.collided = false;
 }
 
 Logic.prototype.init = function () {
@@ -43,6 +44,10 @@ Logic.prototype.unpause = function () {
 
 Logic.prototype.isOnPause = function () {
     return this.isPause;
+}
+
+Logic.prototype.isCollided = function () {
+    return this.collided;
 }
 
 Logic.prototype.increaseBallSpeed = function () {
@@ -95,11 +100,13 @@ Logic.prototype.getBallStartSpeed = function () {
 
 Logic.prototype.calculate = function () {
     this.counter++;
+    this.collided=false;
     if (this.ball.isMovingRight()) {
         if (this.ball.collidesWith(this.player2)) {
             for (var i = 0; i < particleLength; i++) {
                 this.getParticles()[i] = new Particle(this.ball, this.player2);
             }
+            this.collided=true;
             this.ball.alternateXSpeed();
             this.ball.calculateYSpeed(this.player2);
         } else if (this.ball.getX() >= this.canvasWidth) {
@@ -108,6 +115,7 @@ Logic.prototype.calculate = function () {
         }
     } else {
         if (this.ball.collidesWith(this.player1)) {
+            this.collided=true;
             for (var i = 0; i < particleLength; i++) {
                 this.getParticles()[i] = new Particle(this.ball, this.player1);
             }

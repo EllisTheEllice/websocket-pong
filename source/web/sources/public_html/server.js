@@ -211,6 +211,7 @@ function startGameLoop(sockets, logic) {
                     player1: logic.getPlayer1(),
                     player2: logic.getPlayer2(),
                     ball: logic.getBall(),
+		    collided: logic.isCollided(),
                     particles: logic.getParticles()
                 });
             }

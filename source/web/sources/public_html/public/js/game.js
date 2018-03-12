@@ -57,6 +57,11 @@ function gameTick(data) {
     particles = data.particles;
     $('#sp_p1score').text(player1.score);
     $('#sp_p2score').text(player2.score);
+
+    if(data.collided){
+	var audio = new Audio('audio_file.mp3');
+        audio.play();
+   }
 //    console.log(particles);
     draw();
 //    }
