@@ -1,1 +1,6 @@
-node_modules/
+source/web/sources/public_html/node_modules
+source/web/sources/public_html/node_modules/
+/source/web/sources/public_html/node_modules
+/source/web/sources/public_html/node_modules/
+**/node_modules/
+**/node_modules
