@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">    
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>Pong</title>
+        <script src="js/lib/jquery/jquery-2.1.4.min.js" type="text/javascript"></script>
+        <script src="js/lib/jquery_ui/jquery-ui-1.12.0.min.js" type="text/javascript"></script>
+
+
+
+
+
+
+
+        <!-- Bootstrap -->
+        <!--<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-
+        <link href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>-->
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+
+    </head>
+
+    <body>
+        <div id="main">
+
+            <div id="header"></div><!--close header-->	
+
+            <div id="menubar">
+
+                <div id="welcome">
+                    <h1><a href="#">Welcome To Tennis</a></h1>
+                </div><!--close welcome-->
+
+                <div id="menu_items">
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="current"><a href="lobby.html">Lobby</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div><!--close menu-->
+
+            </div><!--close menubar-->	
+
+            <div id="site_content">	
+                <div class="sidebar_container" id="sidebar_container">       
+
+                    <div class="sidebar">
+                        <div class="sidebar_item">
+                            <h2>Users online</h2>
+                            <ul class="list-group" id="userlist"></ul>
+                        </div>
+                        <div style="position: relative; bottom:0">
+                            <div id="buttons">
+                                <button type="button" class="btn btn-primary" id="btn_invite" disabled>Invite to game</button>
+                                <button type="button" class="btn btn-success" id="btn_singleplayer">Singleplayer</button>
+                            </div>
+                        </div><!--close sidebar_item--> 
+                    </div><!--close sidebar-->  
+
+                </div><!--close sidebar_container-->
+
+                <div id="content">
+
+                    <div id="gamearea">
+                        <canvas id="mycanvas" width="853" height="500" style="background-color: #c33e16;"></canvas><br />
+                        <div id="scoreboard">
+                            <span id="sp_p1score"></span> : <span id="sp_p2score"></span>
+                        </div><br />
+                        <button type="button" class="btn btn-danger" id="btn_leftgame">Left game</button>
+                    </div>
+                    <div class="content_item">
+                        <div id="chatarea">
+                            <h1>Chat</h1>
+                            <div id="messages" style="height: 300px; overflow: auto;"></div>
+                            <label for="txt_chatmessage" class="col-form-label">Message:</label>
+                            <input class="form-control" type="text" placeholder="Your message here" id="txt_chatmessage">
+                                <button type="button" class="btn btn-block" id="btn_sendmessage">
+                                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                                    Send
+                                </button>
+                        </div>
+                    </div>
+                </div><!--close content--> 
+
+            </div><!--close site_content--> 
+
+
+
+            <!--<div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">×</span>
+                    <p>Bitte gib hier deinen Benutzernamen an:</p>
+                    <p>
+                        <label for="username">Benutzername:</label>
+                        <input type="text" placeholder="Benutzername" id="username" />
+                    </p>
+                </div>
+
+            </div>-->
+
+
+
+
+
+        </div><!--close main-->
+
+        <div id="footer">
+
+        </div><!--close footer-->  
+
+
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="js/lobby.js" type="text/javascript"></script>
+        <script src="js/game.js" type="text/javascript"></script>
+        <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
+
+    </body>
+</html>
