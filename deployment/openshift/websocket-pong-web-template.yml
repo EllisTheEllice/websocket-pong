@@ -20,6 +20,8 @@ parameters:
     value: "www.foo.bar"
   - name: "GROUP"
     value: "websocket-pong"
+  - name: "IMAGE_VERSION"
+    value: "latest"
 objects:
   - apiVersion: ${API_VERSION}
     kind: Service
@@ -45,7 +47,6 @@ objects:
     metadata:
       annotations:
         openshift.io/generated-by: OpenShiftWebConsole
-      generation: 2
       labels:
         app: ${GROUP}
       name: ${APPLICATION_NAME}
@@ -78,7 +79,7 @@ objects:
         spec:
           containers:
             - image: >-
-                sengbatz/${APPLICATION_NAME}:latest
+                sengbatz/${APPLICATION_NAME}:${IMAGE_VERSION}
               imagePullPolicy: Always
               name: ${APPLICATION_NAME}
               ports:
@@ -99,13 +100,12 @@ objects:
               - ${APPLICATION_NAME}
             from:
               kind: ImageStreamTag
-              name: '${APPLICATION_NAME}:latest'
+              name: '${APPLICATION_NAME}:${IMAGE_VERSION}'
               namespace: ${NAMESPACE}
           type: ImageChange
   - apiVersion: image.openshift.io/${API_VERSION}
     kind: ImageStream
     metadata:
-      generation: 2
       labels:
         app: ${GROUP}
       name: ${APPLICATION_NAME}
@@ -121,12 +121,11 @@ objects:
           from:
             kind: DockerImage
             name: sengbatz/${APPLICATION_NAME}
-          generation: 2
           importPolicy: {}
-          name: latest
+          name: ${IMAGE_VERSION}
           referencePolicy:
             type: Source
-    apiVersion: ${API_VERSION}
+  - apiVersion: ${API_VERSION}
     kind: Route
     metadata:
       annotations:
