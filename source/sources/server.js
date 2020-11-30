@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
+var io = require('socket.io')(server)
 //var conf = require('./config.json');
 var port=process.env.PORT || 8080
 
@@ -25,7 +25,7 @@ var gameloop, ballloop;
 var lobbyUsers = new Array();
 var pairs = new Array();
 
-io.sockets.on('connection', function (socket) {
+io.on('connection', function (socket) {
 
     socket.on('clienthandshake', function (data) {
         lobbyUsers.forEach(function (user) {
