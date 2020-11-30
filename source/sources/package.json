@@ -1,9 +1,9 @@
 {
     "name": "nodejs-pong",
     "description": "An easy pong implementation on NodeJS and Websockets",
-    "author": "sengbatz",
+    "author": "ellistheellice",
     "dependencies": {
-        "express": "4.16.2",
-        "socket.io": "2.0.4"
+        "express": "4.17.1",
+        "socket.io": "3.0.3"
     }
 }

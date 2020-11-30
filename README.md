@@ -52,7 +52,7 @@ websocket-pong uses a number of open source projects to work properly:
    ```-->
 2. *Run the application*
    ```sh
-   $ docker run -p 80:8081 -d --name pong-web --network pongnet ellistheellice/websocket-pong
+   $ docker run -it -p 80:8081 -e PORT=8081 -d --name pong-web ellistheellice/websocket-pong
    ```
 3. *Verify the installation*
    ```sh
