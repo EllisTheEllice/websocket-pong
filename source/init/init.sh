@@ -7,4 +7,4 @@
 #echo "222222"
 #mysql -u root -p123 pong < /tmp/init.sql
 
-nodejs /usr/src/app/server.js
+PORT=$PORT nodejs /usr/src/app/server.js
