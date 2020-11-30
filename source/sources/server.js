@@ -312,7 +312,7 @@ function cancel(socket) {
 }
 
 function getSocketById(socketId) {
-    return io.sockets.connected[socketId];
+    return io.of("/").sockets.get(socketId);
 }
 
 function getFormattedDate() {
