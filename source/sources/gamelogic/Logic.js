@@ -6,10 +6,10 @@ var particleLength = 30;
 
 function Logic(isSingleplayer) {
     this.particles = new Array();
-    this.enemySpeed = 10;
+    this.enemySpeed = 11;
     this.canvasHeight = 500;
     this.canvasWidth = 853;
-    this.ballStartSpeed = 6;
+    this.ballStartSpeed = 9;
     this.counter = 0;
     this.player1 = null;
     this.player2 = null;

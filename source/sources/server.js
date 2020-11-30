@@ -2,21 +2,22 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
-var conf = require('./config.json');
+//var conf = require('./config.json');
+var port=process.env.PORT || 8080
 
 var Ball = require('./gamelogic/Ball');
 var Particle = require('./gamelogic/Particle');
 var Player = require('./gamelogic/Player');
 var Logic = require('./gamelogic/Logic');
 
-server.listen(conf.port);
+server.listen(port);
 
 // statische Dateien ausliefern
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
     // so wird die Datei index.html ausgegeben
-    res.sendfile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + '/public/index.html');
 });
 
 
@@ -319,4 +320,4 @@ function getFormattedDate() {
     return d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
 }
 
-console.log('Server runs on http://127.0.0.1:' + conf.port + '/ now');
+console.log('Server runs on http://127.0.0.1:' + port + '/ now');
