@@ -5,7 +5,3 @@ CREATE TABLE highscore (
 `username` VARCHAR(12) NOT NULL,
 `score` INT NOT NULL
 )ENGINE=InnoDB;
-
-INSERT INTO highscore (username,score) VALUES ('Phenix',1000);
-
--- CREATE TABLE highscore;
