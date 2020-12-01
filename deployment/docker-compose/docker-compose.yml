@@ -1,4 +1,3 @@
-version: '0.1'
 services:
   web:
     image: "ellistheellice/websocket-pong"
@@ -9,5 +8,8 @@ services:
   db:
     image: "mysql"
     volumes:
-      - C:\Users\sengbers\Desktop\pong-db:/var/lib/mysql
+      - <your-folder>:/var/lib/mysql
       - ../init-db:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_DATABASE=pong
