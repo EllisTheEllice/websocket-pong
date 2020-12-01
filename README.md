@@ -87,19 +87,9 @@ websocket-pong uses a number of open source projects to work properly:
 
    ```sh
    $ git clone https://github.com/EllisTheEllice/websocket-pong
-   $ cd websocket-pong
-   $ docker network create pongnet
-   ```
-   <!--#DB
-   $ cd source/database
-   $ mkdir /tmp/persdata
-   $ docker build -t pong-db-image .
-   $ docker run -d --name pong-database --network pongnet -v $PWD/data:/docker-entrypoint-initdb.d -v /tmp/persdata:/var/lib/mysql pong-db-image --character-set-server=utf8 --collation-server=utf8_general_ci-->
-   ```sh
-   #Web
-   $ cd ../web
-   $ docker build -t pong-web-image .
-   $ docker run -p 80:8081 -d --name pong-web --network pongnet pong-web-image
+   $ cd websocket-pong/source
+   $ docker build -t pong-web .
+   $ docker run -p 80:8081 -d --name pong-web --network pongnet pong-web
    ```
 
 <!--
