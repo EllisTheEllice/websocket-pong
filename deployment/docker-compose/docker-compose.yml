@@ -3,10 +3,10 @@ services:
   web:
     image: "ellistheellice/websocket-pong"
     ports:
-      - "80:8081"
+      - "8081:8081"
     environment:
       - PORT=8081
-  #db:
-  #  image: "ellistheellice/websocket-pong-db"
-  #  volumes:
-  #    - /tmp/persdata:/var/lib/mysql
+  db:
+    image: "mysql"
+    volumes:
+      - C:\Users\sengbers\Desktop\pong-db:/var/lib/mysql
