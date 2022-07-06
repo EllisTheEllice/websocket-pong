@@ -1,11 +1,11 @@
 # websocket-pong
 
-This is a small Pong game based on JavaScript (server-side and client-side) with WebSockets.
+This is a small Pong game based on JavaScript (server-side and client-side) with WebSockets. I created it quite some time ago to get in touch with docker and try out the websocket technology.
 It is possible to play this game against AI or against an opponent via network.
 This game also has a lobby where players can find and challenge each other.
 
 ## Version
-0.1
+0.0.1
 
 
 
@@ -74,14 +74,6 @@ websocket-pong uses a number of open source projects to work properly:
    $ docker ps
    $ curl http://localhost
    ```
-
-## Installation on Kubernetes<a name="kubernetes"></a>
-
-// Todo
-
-## Installation on Kubernetes using helm<a name="helm"></a>
-
-//Todo
 
 ## Building the images locally<a name="localbuild"></a>
 
